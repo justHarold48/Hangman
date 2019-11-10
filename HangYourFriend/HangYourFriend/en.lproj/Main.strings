@@ -1,0 +1,12 @@
+
+/* Class = "UILabel"; text = "Hang Your Friend"; ObjectID = "KTc-Mn-ioW"; */
+"KTc-Mn-ioW.text" = "Hang Your Friend";
+
+/* Class = "UIButton"; normalTitle = "Guess"; ObjectID = "N6E-Nd-V2n"; */
+"N6E-Nd-V2n.normalTitle" = "Guess";
+
+/* Class = "UITextView"; text = "Stage"; ObjectID = "PEa-Wo-YH8"; */
+"PEa-Wo-YH8.text" = "Stage";
+
+/* Class = "UILabel"; text = "Enter A Letter:"; ObjectID = "x1b-5V-If6"; */
+"x1b-5V-If6.text" = "Enter A Letter:";
