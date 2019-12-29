@@ -35,7 +35,7 @@ class ViewController: UIViewController, UITextFieldDelegate
     var timeLeft = 35
     
     /* Checks if the letter choosen by user is
-     * is in word set in stage.
+     * is in the word set in stage.
      */
     @IBAction func guessButton(_ sender: Any)
     {

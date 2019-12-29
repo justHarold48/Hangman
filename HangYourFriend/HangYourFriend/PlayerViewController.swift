@@ -45,7 +45,6 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController: UIViewController  = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             viewController.modalPresentationStyle = .fullScreen
-            //self.dismiss(animated: true, completion: nil)
             show(viewController, sender: self)
         }
     }
@@ -55,9 +54,8 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         self.modalPresentationStyle = .currentContext
-         wordTextField.delegate = self
+        wordTextField.delegate = self
         hintTextField.addTarget(self, action: #selector(clickAction), for: .touchDown)
-              
     }
 
     override func didReceiveMemoryWarning()
