@@ -49,9 +49,7 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
             show(viewController, sender: self)
         }
     }
-    
-
-    
+     
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -68,14 +66,14 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
         // Dispose of any resources that can be recreated.
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 
+    {
         self.view.endEditing(true)
     }
     
     @objc func clickAction(textField: UITextField)
     {
         hintTextField.text = ""
-        
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
@@ -93,16 +91,4 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
         textField.resignFirstResponder()
         return true;
     }
- 
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
