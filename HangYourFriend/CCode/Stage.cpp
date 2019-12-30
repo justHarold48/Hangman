@@ -24,6 +24,7 @@ Stage::Stage()
     prevGuessList = "";
 }
 
+
 void Stage::initStage(const char* word)
 {
     this->word = word;
@@ -39,9 +40,14 @@ void Stage::initStage(const char* word)
 
 void Stage::nextStageState() noexcept(false)
 {
-    if (state++ == COMPLETE_STATE)
+    state++;
+    
+    if (state == COMPLETE_STATE)
+    {
+        stake = getStakeState(state);
         throw STAKE_FULL_EXECEPTION.c_str();
-
+    }
+    
     stake = getStakeState(state);
 }
 
@@ -88,6 +94,7 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
     return false;
 }
+
 
 std::string Stage::getStakeState(int state)
 {
