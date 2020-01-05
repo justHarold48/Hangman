@@ -12,13 +12,16 @@
 #include <sstream>
 #include <CoreFoundation/CoreFoundation.h>
 
+std::string const parts [] = {"o", "|", "-", "-", "\\", "/"};
+int const pos [] = {57, 90, 91, 89, 125, 121};
+
 std::string const DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
 std::string const STAKE_FULL_EXECEPTION = "Stake Complete";
 std::string const BASE_FULL_EXCEPTION = "Base Complete";
 
 Stage::Stage()
 {
-    state = 1;
+    state = 0;
     prevGuessList = "";
 }
 
@@ -94,41 +97,15 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
 void Stage::addBodyPart() noexcept(false)
 {
-  string head = "o" ;
-  string rleg = "\\";
-  string arm = "-";
-  string torso = "|";
-  string lleg = "/";
-
-  int head_pos = 56;
-  int torso_pos = 88;
-  int rarm_pos = 89;
-  int larm_pos = 87;
-  int rleg_pos = 121;
-  int lleg_pos = 118;
-
-  switch(state++)
+  if (state == 5)
   {
-  case 1:
-    stake.replace(head_pos, head.length()+1, head);
-    break;
-  case 2:
-    stake.replace(torso_pos, torso.length()+1, torso);
-    break;
-  case 3:
-    stake.replace(rarm_pos, arm.length()+1, arm);
-    break;
-  case 4:
-    stake.replace(larm_pos, arm.length(), arm);
-    break;
-  case 5:
-    stake.replace(rleg_pos, rleg.length()+1, rleg);
-    break;
-  case 6:
-    stake.replace(lleg_pos, lleg.length(), lleg);
+    stake.replace(pos[state], parts[state].length()+1, parts[state]);
     throw STAKE_FULL_EXECEPTION.c_str();
   }
 
+  stake.replace(pos[state], parts[state].length(), parts[state]);
+    
+  state++;
 }
 
 
