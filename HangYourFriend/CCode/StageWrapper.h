@@ -12,7 +12,7 @@
 
 - (void)initStage:(const char*)length;
 
-- (void)nextStageState;
+- (void)addBodyPart;
 
 - (int)getState;
 

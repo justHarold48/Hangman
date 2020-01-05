@@ -23,15 +23,15 @@
     stage.initStage(word);
 }
 
--(void)nextStageState
+-(void)addBodyPart
 {
     try
     {
-        stage.nextStageState();
+        stage.addBodyPart();
     }
     catch (const char* e)
     {
-        
+  
         printf("\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: ");
         printf("%s", e);
         printf("\n\n");

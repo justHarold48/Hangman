@@ -40,11 +40,6 @@ extern "C"
             void initStage(const char*); 
 
             //
-            // forces the current stage to change to it's next state
-            //
-            void nextStageState() noexcept(false); 
-
-            //
             // returns current stage
             //
             string getStage(void); 
@@ -63,6 +58,11 @@ extern "C"
             // returns state of stage.
             //
             int getState(void);
+        
+            //
+            // adds body part to stake
+            //
+            void addBodyPart() noexcept(false);
 
       private:
             //
@@ -74,6 +74,7 @@ extern "C"
             // returns the current state of the stake
             //
             string getStakeState(int state);
+          
     };
 
 #ifdef __cplusplus

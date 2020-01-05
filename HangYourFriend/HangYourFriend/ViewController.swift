@@ -191,7 +191,7 @@ class ViewController: UIViewController, UITextFieldDelegate
             do{
                 try stageWrapper.catchException
                 {
-                    self.stageWrapper.nextStageState()
+                    self.stageWrapper.addBodyPart()
                 }
             }catch
             {
