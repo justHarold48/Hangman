@@ -97,15 +97,10 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
 void Stage::addBodyPart() noexcept(false)
 {
-  if (state == 5)
-  {
-    stake.replace(pos[state], parts[state].length()+1, parts[state]);
-    throw STAKE_FULL_EXECEPTION.c_str();
-  }
-
   stake.replace(pos[state], parts[state].length(), parts[state]);
-    
-  state++;
+
+  if (5 == state++)
+    throw STAKE_FULL_EXECEPTION.c_str();
 }
 
 
