@@ -13,7 +13,6 @@
 		3A6B7082216BD04800857192 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7081216BD04800857192 /* AppDelegate.swift */; };
 		3A6B7084216BD04800857192 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7083216BD04800857192 /* ViewController.swift */; };
 		3A6B7087216BD04800857192 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6B7085216BD04800857192 /* Main.storyboard */; };
-		3A6B7089216BD04B00857192 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A6B7088216BD04B00857192 /* Assets.xcassets */; };
 		3A6B708C216BD04B00857192 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A6B708A216BD04B00857192 /* LaunchScreen.storyboard */; };
 		3A6B7097216BD04B00857192 /* HangYourFriendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B7096216BD04B00857192 /* HangYourFriendTests.swift */; };
 		3A6B70D2216C286800857192 /* HangYourFriendUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6B70A1216BD04B00857192 /* HangYourFriendUITests.swift */; };
@@ -48,7 +47,6 @@
 		3A6B7081216BD04800857192 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A6B7083216BD04800857192 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A6B7086216BD04800857192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		3A6B7088216BD04B00857192 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A6B708B216BD04B00857192 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A6B708D216BD04B00857192 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A6B7092216BD04B00857192 /* HangYourFriendTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HangYourFriendTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,7 +115,6 @@
 				3A6B7083216BD04800857192 /* ViewController.swift */,
 				3A0297C5217261ED0032B43F /* PlayerViewController.swift */,
 				3A6B7085216BD04800857192 /* Main.storyboard */,
-				3A6B7088216BD04B00857192 /* Assets.xcassets */,
 				3A6B708A216BD04B00857192 /* LaunchScreen.storyboard */,
 				3A6B708D216BD04B00857192 /* Info.plist */,
 				3A599D212377723D00758613 /* HYF_icon(180x180).png */,
@@ -263,7 +260,6 @@
 			files = (
 				3A599D202377722400758613 /* HYF_icon(120x120).png in Resources */,
 				3A6B708C216BD04B00857192 /* LaunchScreen.storyboard in Resources */,
-				3A6B7089216BD04B00857192 /* Assets.xcassets in Resources */,
 				3A599D222377723D00758613 /* HYF_icon(180x180).png in Resources */,
 				3A6B7087216BD04800857192 /* Main.storyboard in Resources */,
 			);

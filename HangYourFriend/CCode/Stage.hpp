@@ -56,7 +56,7 @@ extern "C"
             //
             // returns state of stage.
             //
-            inline int getState(void);
+            int getState(void);
 
             //
             // adds body part to stake

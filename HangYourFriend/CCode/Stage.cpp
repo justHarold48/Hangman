@@ -66,7 +66,7 @@ std::string Stage::getCompleteStage()
 {
     for(char letter : word)
         if(prevGuessList.find(letter) == std::string::npos)
-            insertBaseLetter(letter);
+            insertLetter(letter);
 
     return (stake + base);
 }
@@ -79,7 +79,7 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
     if (word.find(letter) != std::string::npos)
     {
-        insertBaseLetter(letter);
+        insertLetter(letter);
 
         if(base.find("_") == std::string::npos)
             throw BASE_FULL_EXCEPTION.c_str();
