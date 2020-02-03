@@ -5,7 +5,8 @@
 //  Created by Harold Hatch on 10/9/18.
 //  Copyright © 2018 Onekliclabs. All rights reserved.
 //
-#import <Foundation/Foundation.h>
+#include <Foundation/Foundation.h>
+
 #include "Stage.hpp"
 #include <stdio.h>
 #include <string>
@@ -29,21 +30,20 @@ Stage::Stage()
 
 void Stage::initStage(const char* word)
 {
-    this->word = stake;
-
-    word = "     --------------\n"
-    "    |                         |\n"
-    "                               |\n"
-    "                               |\n"
-    "                               |\n"
-    "                               |\n"
-    "                               |\n"
-    "                                \n";
-
+    this->word = word;
+    
+    stake = "     --------------\n"
+            "    |                         |\n"
+            "                               |\n"
+            "                               |\n"
+            "                               |\n"
+            "                               |\n"
+            "                               |\n"
+            "                                \n";
 
     base = "";
 
-    for(int i = 0; i < this->word.length(); i++)
+    for(int i = 0; i < std::strlen( word ); i++)
     {
         base += "    _";
     }

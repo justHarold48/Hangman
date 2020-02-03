@@ -6,7 +6,6 @@
 //  Copyright © 2018 Onekliclabs. All rights reserved.
 //
 
-
 #include <string>
 
 #ifdef __cplusplus

@@ -6,7 +6,7 @@
 //  Copyright © 2018 Onekliclabs. All rights reserved.
 //
 
-#import "StageWrapper.h"
+#include "StageWrapper.h"
 #include "Stage.hpp"
 
 @interface StageWrapper()
