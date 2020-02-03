@@ -6,9 +6,8 @@
 //  Copyright © 2018 Onekliclabs. All rights reserved.
 //
 
-#include <iostream>
+
 #include <string>
-using namespace std;
 
 #ifdef __cplusplus
 extern "C"
@@ -18,10 +17,10 @@ extern "C"
     {
         private:
             int state;
-            string stake;
-            string base;
-            string word;
-            string prevGuessList;
+            std::string stake;
+            std::string base;
+            std::string word;
+            std::string prevGuessList;
 
         public:
             //
@@ -32,33 +31,33 @@ extern "C"
             //
             // Deconstructor
             //
-            virtual ~Stage() = default; 
+            virtual ~Stage() = default;
 
             //
             // adds stake and base according to word entered
             //
-            void initStage(const char*); 
+            void initStage(const char*);
 
             //
             // returns current stage
             //
-            string getStage(void); 
+            std::string getStage(void);
 
             //
             // returns complete stage
             //
-            string getCompleteStage(void); 
+            std::string getCompleteStage(void);
 
             //
             // returns true if char in word else returns false
             //
-            bool makeGuess(char) noexcept(false); 
+            bool makeGuess(char) noexcept(false);
 
             //
             // returns state of stage.
             //
-            int getState(void);
-        
+            inline int getState(void);
+
             //
             // adds body part to stake
             //
@@ -68,13 +67,13 @@ extern "C"
             //
             // adds a letter to the base
             //
-            void insertBaseLetter(char);
+            void insertLetter(char);
 
             //
             // returns the current state of the stake
             //
-            string getStakeState(int state);
-          
+            std::string getStakeState(int state);
+
     };
 
 #ifdef __cplusplus

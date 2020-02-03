@@ -12,8 +12,9 @@
 #include <sstream>
 #include <CoreFoundation/CoreFoundation.h>
 
-std::string const parts [] = {"o", "|", "-", "-", "\\", "/"};
 int const pos [] = {57, 90, 91, 89, 125, 121};
+
+std::string const PARTS [] = {"o", "|", "-", "-", "\\", "/"};
 
 std::string const DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
 std::string const STAKE_FULL_EXECEPTION = "Stake Complete";
@@ -28,16 +29,16 @@ Stage::Stage()
 
 void Stage::initStage(const char* word)
 {
-    this->word = word;
+    this->word = stake;
 
-    stake = "     --------------\n"
+    word = "     --------------\n"
     "    |                         |\n"
     "                               |\n"
     "                               |\n"
     "                               |\n"
     "                               |\n"
     "                               |\n"
-    "                                \n"; 
+    "                                \n";
 
 
     base = "";
@@ -97,14 +98,14 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
 void Stage::addBodyPart() noexcept(false)
 {
-  stake.replace(pos[state], parts[state].length(), parts[state]);
+  stake.replace(pos[state], PARTS[state].length(), PARTS[state]);
 
   if (5 == state++)
     throw STAKE_FULL_EXECEPTION.c_str();
 }
 
 
-void Stage::insertBaseLetter(char letter)
+void Stage::insertLetter(char letter)
 {
     prevGuessList += letter;
     std::string newBase = "";

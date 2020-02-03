@@ -31,14 +31,14 @@
     }
     catch (const char* e)
     {
-  
+
         printf("\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: ");
         printf("%s", e);
         printf("\n\n");
-        
+
         NSString* reason = [NSString stringWithUTF8String:e];
         NSString* name = reason;
-        
+
         NSException *exception = [NSException
                                   exceptionWithName:name
                                   reason: reason
@@ -69,17 +69,17 @@
     try
     {
         return stage.makeGuess(letter);
-        
+
     } catch (const char* e)
     {
 
         printf("\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: ");
         printf("%s", e);
         printf("\n\n");
-    
+
         NSString* reason = [NSString stringWithUTF8String:e];
         NSString* name = reason;
-        
+
         NSException *exception = [NSException
                           exceptionWithName:name
                           reason: reason
