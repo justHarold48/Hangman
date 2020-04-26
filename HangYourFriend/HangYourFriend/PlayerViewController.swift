@@ -15,16 +15,14 @@ var HINT : String = ""
 class PlayerViewController: UIViewController, UITextFieldDelegate
 {
     let MAX_TEXT_LENGTH = 35
-    
+
     @IBOutlet weak var wordTextField: UITextField!
     @IBOutlet weak var hintTextField: UITextField!
-    
+
     @IBAction func startAction(_ sender: Any)
     {
         if (wordTextField.hasText)
         {
-            var trimmedText = hintTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            
             if(hintTextField.hasText)
             {
                 if((hintTextField.text?.count)! > MAX_TEXT_LENGTH)
@@ -33,22 +31,23 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
                     hintTextField.text = "Hint too long (35 characters or less)"
                     return
                 }
-                HINT = "Hint: " + trimmedText!
-            }else
+
+                HINT = "Hint: " + (hintTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!
+            }
+            else
             {
                 HINT = "Hint: No Hint Given"
             }
-            
-            trimmedText = wordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
-            GUESSWORD = trimmedText!.lowercased()
-            
+
+            GUESSWORD = (wordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!.lowercased()
+
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let viewController: UIViewController  = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
             viewController.modalPresentationStyle = .fullScreen
             show(viewController, sender: self)
         }
     }
-     
+
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -63,17 +62,17 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) 
+
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         self.view.endEditing(true)
     }
-    
+
     @objc func clickAction(textField: UITextField)
     {
         hintTextField.text = ""
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
     {
         let maxLength = 10
@@ -82,7 +81,7 @@ class PlayerViewController: UIViewController, UITextFieldDelegate
             currentString.replacingCharacters(in: range, with: string) as NSString
         return newString.length <= maxLength
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         // resign keyboard after enter is pressed

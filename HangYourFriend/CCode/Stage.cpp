@@ -13,13 +13,14 @@
 #include <sstream>
 #include <CoreFoundation/CoreFoundation.h>
 
-int const pos [] = {57, 90, 91, 89, 125, 121};
+const int POS [] = {57, 90, 91, 89, 125, 121};
 
-std::string const PARTS [] = {"o", "|", "-", "-", "\\", "/"};
+const std::string PARTS [] = {"o", "|", "-", "-", "\\", "/"};
 
-std::string const DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
-std::string const STAKE_FULL_EXECEPTION = "Stake Complete";
-std::string const BASE_FULL_EXCEPTION = "Base Complete";
+const std::string DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
+const std::string STAKE_FULL_EXECEPTION = "Stake Complete";
+const std::string BASE_FULL_EXCEPTION = "Base Complete";
+const char END_STATE = 5;
 
 Stage::Stage()
 {
@@ -31,7 +32,7 @@ Stage::Stage()
 void Stage::initStage(const char* word)
 {
     this->word = word;
-    
+
     stake = "     --------------\n"
             "    |                         |\n"
             "                               |\n"
@@ -41,12 +42,9 @@ void Stage::initStage(const char* word)
             "                               |\n"
             "                                \n";
 
-    base = "";
-
     for(int i = 0; i < std::strlen( word ); i++)
-    {
         base += "    _";
-    }
+
 }
 
 
@@ -86,11 +84,9 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
         return true;
     }
-    else
-    {
-      prevGuessList += letter;
-      addBodyPart();
-    }
+
+    prevGuessList += letter;
+    addBodyPart();
 
     return false;
 }
@@ -98,9 +94,9 @@ bool Stage::makeGuess(char letter) noexcept(false)
 
 void Stage::addBodyPart() noexcept(false)
 {
-  stake.replace(pos[state], PARTS[state].length(), PARTS[state]);
+  stake.replace(POS[state], PARTS[state].length(), PARTS[state]);
 
-  if (5 == state++)
+  if (END_STATE == state++)
     throw STAKE_FULL_EXECEPTION.c_str();
 }
 
@@ -109,7 +105,7 @@ void Stage::insertLetter(char letter)
 {
     prevGuessList += letter;
     std::string newBase = "";
-    int baseCount = 4;
+    int spaceCount = 4;
 
     // convert char to string
     for(int i = 0 ; i < word.length(); i++)
@@ -120,7 +116,8 @@ void Stage::insertLetter(char letter)
             newBase += "    ";
             newBase += letter;
 
-        }else if(base[baseCount] == '_')
+        }
+                   else if(base[spaceCount] == '_')
         {
             // add empty space
             newBase += "    _";
@@ -129,10 +126,10 @@ void Stage::insertLetter(char letter)
         {
             // add previously added letter
             newBase += "    ";
-            newBase += base[baseCount];
+            newBase += base[spaceCount];
         }
 
-        baseCount += 5;
+        spaceCount += 5;
     }
 
     base = newBase ;

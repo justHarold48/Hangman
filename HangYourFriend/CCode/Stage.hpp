@@ -15,7 +15,7 @@ extern "C"
     class Stage
     {
         private:
-            int state;
+            unsigned char state;
             std::string stake;
             std::string base;
             std::string word;
