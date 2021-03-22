@@ -14,13 +14,6 @@ extern "C"
 #endif
     class Stage
     {
-        private:
-            unsigned char state;
-            std::string stake;
-            std::string base;
-            std::string word;
-            std::string prevGuessList;
-
         public:
             //
             // Constructor
@@ -50,7 +43,7 @@ extern "C"
             //
             // returns true if char in word else returns false
             //
-            bool makeGuess(char) noexcept(false);
+            bool makeGuess(const char&) noexcept(false);
 
             //
             // returns state of stage.
@@ -66,13 +59,14 @@ extern "C"
             //
             // adds a letter to the base
             //
-            void insertLetter(char);
+            void insertLetter(const char&);
 
-            //
-            // returns the current state of the stake
-            //
-            std::string getStakeState(int state);
-
+            unsigned char state;
+            std::string stake;
+            std::string base;
+            std::string word;
+            std::string prevGuessList;
+        
     };
 
 #ifdef __cplusplus

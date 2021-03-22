@@ -13,6 +13,8 @@
 #include <sstream>
 #include <CoreFoundation/CoreFoundation.h>
 
+using namespace std;
+
 const int POS [] = {57, 90, 91, 89, 125, 121};
 
 const std::string PARTS [] = {"o", "|", "-", "-", "\\", "/"};
@@ -70,7 +72,7 @@ std::string Stage::getCompleteStage()
 }
 
 
-bool Stage::makeGuess(char letter) noexcept(false)
+bool Stage::makeGuess(const char& letter) noexcept(false)
 {
     if(prevGuessList.find(letter) != std::string::npos)
         throw DUPLICATE_LETTER_EXECEPTION.c_str();
@@ -101,14 +103,14 @@ void Stage::addBodyPart() noexcept(false)
 }
 
 
-void Stage::insertLetter(char letter)
+void Stage::insertLetter(const char& letter)
 {
     prevGuessList += letter;
-    std::string newBase = "";
+    string newBase = "";
     int spaceCount = 4;
 
     // convert char to string
-    for(int i = 0 ; i < word.length(); i++)
+    for(size_t i = 0 ; i < word.length(); i++)
     {
         if(word[i] == letter)
         {
