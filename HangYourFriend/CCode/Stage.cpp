@@ -15,7 +15,7 @@
 
 using namespace std;
 
-const int POS [] = {57, 90, 91, 89, 125, 121};
+const unsigned int POS [] = {57, 90, 91, 89, 125, 121};
 
 const std::string PARTS [] = {"o", "|", "-", "-", "\\", "/"};
 
@@ -50,7 +50,7 @@ void Stage::initStage(const char* word)
 }
 
 
-int Stage::getState()
+unsigned int Stage::getState()
 {
     return state;
 }
