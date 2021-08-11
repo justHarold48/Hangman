@@ -22,7 +22,8 @@ const std::string PARTS [] = {"o", "|", "-", "-", "\\", "/"};
 const std::string DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
 const std::string STAKE_FULL_EXECEPTION = "Stake Complete";
 const std::string BASE_FULL_EXCEPTION = "Base Complete";
-const char END_STATE = 5;
+
+constexpr uint8_t END_STATE = 5;
 
 Stage::Stage()
 {
