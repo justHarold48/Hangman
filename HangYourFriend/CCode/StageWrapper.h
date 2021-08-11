@@ -16,6 +16,8 @@
 
 - (int)getState;
 
+- (NSString*)getRemainingLetters;
+
 - (NSString*)getStage;
 
 - (NSString*)getCompleteStage;

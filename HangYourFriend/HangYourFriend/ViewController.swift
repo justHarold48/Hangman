@@ -30,8 +30,8 @@ class ViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var hgImageHolder: UIView!
 
     let stageWrapper = StageWrapper()
-    var strStage: UnsafePointer<Int8>!
-    var GAME_STATE: Int = 1
+    var strStage : UnsafePointer<Int8>!
+    var GAME_STATE : Int = 1
     var timeLeft = 35
 
     /* Checks if the letter choosen by user is
@@ -57,37 +57,40 @@ class ViewController: UIViewController, UITextFieldDelegate
 
                     if  (correctGuess)
                     {
+                        var remaining = self.stageWrapper.getRemainingLetters()!
+                        
+                        if(remaining.isEmpty) {
+                            stageView.text = stageWrapper.getStage()
+                            postMessage(color: UIColor.green, message: "Word Complete, YOU WIN!! :)")
+                            guessButton.isEnabled = false
+                            playAgainButton.isHidden = false
+                            timer?.invalidate()
+                            timeLabel.text = "0"
+                        }
+                        else {
+                            stageView.text = stageWrapper.getStage()
+                            postMessage(color: UIColor.blue, message: "Your guess is in the Word!!")
+                        }
+                    }
+                    else{
                         stageView.text = stageWrapper.getStage()
-                        postMessage(color: UIColor.blue, message: "Your guess is in the Word!!")
-                    }else
-                    {
-                        stageView.text = stageWrapper.getStage()
-                        if(stageWrapper.getState() == HINT_STATE)
-                        {
+                        
+                        if(stageWrapper.getState() == HINT_STATE) {
                             postMessage(color: UIColor.blue, message: HINT)
                         }
-                        else
-                        {
+                        else {
                             postMessage(color: UIColor.red, message: "Sorry your guess is not in the word")
                         }
                     }
-                }catch
-                {
+                }
+                catch {
                     print(error.localizedDescription)
 
                     if(error.localizedDescription.contains(DUPLICATE_L_ERROR))
                     {
                         postMessage(color: UIColor.red, message: (DUPLICATE_L_ERROR + " TRY AGAIN"))
-                    }else if (error.localizedDescription.contains(BASE_FULL_ERROR))
-                    {
-                        stageView.text = stageWrapper.getStage()
-                        postMessage(color: UIColor.green, message: "Word Complete, YOU WIN!! :)")
-                        guessButton.isEnabled = false
-                        playAgainButton.isHidden = false
-                        timer?.invalidate()
-                        timeLabel.text = "0"
-                    }else if (error.localizedDescription.contains(STAKE_FULL_ERROR))
-                    {
+                    }
+                    else if (error.localizedDescription.contains(STAKE_FULL_ERROR)) {
                         stageView.text = stageWrapper.getCompleteStage()
                         stageView.textColor = UIColor.orange
                         postMessage(color: UIColor.orange, message: "You Lose!!! Better Luck Next Time :(")
@@ -96,29 +99,25 @@ class ViewController: UIViewController, UITextFieldDelegate
                         timer?.invalidate()
                         timeLabel.text = "0"
                     }
-
                 }
-            }else
-            {
+            }
+            else {
                 postMessage(color: UIColor.red, message: "Too Many Characters!!")
             }
         }
-        else
-        {
+        else {
             postMessage(color: UIColor.red, message: "Nothing Entered, Try Again!!")
         }
 
         guessTextField.resignFirstResponder()
     }
 
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func viewDidAppear(_ animated: Bool)
-    {
+    override func viewDidAppear(_ animated: Bool) {
         guessTextField.delegate = self
         playAgainButton.isHidden = true
         stageWrapper.initStage(GUESSWORD)
@@ -131,8 +130,7 @@ class ViewController: UIViewController, UITextFieldDelegate
         timer = Timer.scheduledTimer(timeInterval: 1.0 , target: self, selector: #selector(timeout), userInfo: nil, repeats: true)
     }
 
-    override func didReceiveMemoryWarning()
-    {
+    override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
@@ -189,14 +187,12 @@ class ViewController: UIViewController, UITextFieldDelegate
         if timeLeft <= 0
         {
             do{
-                try stageWrapper.catchException
-                {
+                try stageWrapper.catchException{
                     self.stageWrapper.addBodyPart()
                 }
-            }catch
-            {
-                if (error.localizedDescription.contains(STAKE_FULL_ERROR))
-                {
+            } 
+            catch {
+                if (error.localizedDescription.contains(STAKE_FULL_ERROR)) {
                     stageView.text = stageWrapper.getCompleteStage()
                     stageView.textColor = UIColor.orange
                     postMessage(color: UIColor.orange, message: "Better Luck Next Time :(")

@@ -7,67 +7,74 @@
 //
 
 #include <string>
+#include <unordered_set>
 
 #ifdef __cplusplus
 extern "C"
 {
 #endif
-    class Stage
-    {
-        public:
-            //
-            // Constructor
-            //
-            Stage(void);
+    
+class Stage {
+public:
+    //
+    // Constructor
+    //
+    Stage(void) = default;
 
-            //
-            // Deconstructor
-            //
-            virtual ~Stage() = default;
+    //
+    // Deconstructor
+    //
+    virtual ~Stage() = default;
 
-            //
-            // adds stake and base according to word entered
-            //
-            void initStage(const char*);
+    //
+    // adds stake and base according to word entered
+    //
+    void initStage(const char*);
 
-            //
-            // returns current stage
-            //
-            std::string getStage(void);
+    //
+    // returns current stage
+    //
+    const std::string getStage(void) const {return (stake_ + base_);}
+    
+    //
+    // returns remaining unguessed letters
+    //
+    const std::string& getRemainingLetters() const {return remaining_;}
 
-            //
-            // returns complete stage
-            //
-            std::string getCompleteStage(void);
+    //
+    // returns state of stage.
+    //
+    unsigned getState(void) const {return state;}
 
-            //
-            // returns true if char in word else returns false
-            //
-            bool makeGuess(const char&) noexcept(false);
+    //
+    // returns complete stage
+    //
+    std::string getCompleteStage(void);
 
-            //
-            // returns state of stage.
-            //
-            unsigned int getState(void);
+    //
+    // returns true if char in word else returns false
+    //
+    bool makeGuess(char) noexcept(false);
 
-            //
-            // adds body part to stake
-            //
-            void addBodyPart() noexcept(false);
+    //
+    // adds body part to stake
+    //
+    void addBodyPart() noexcept(false);
 
-      private:
-            //
-            // adds a letter to the base
-            //
-            void insertLetter(const char&);
-
-            unsigned char state;
-            std::string stake;
-            std::string base;
-            std::string word;
-            std::string prevGuessList;
+private:
+    //
+    // adds a letter to the base
+    //
+    void addLetter(char);
         
-    };
+private:
+    uint8_t state {0};
+    std::string stake_;
+    std::string base_;
+    std::string word_;
+    std::string remaining_;
+    std::unordered_set<char> prevGuessedLetters_;
+};
 
 #ifdef __cplusplus
 }

@@ -9,6 +9,8 @@
 #include "StageWrapper.h"
 #include "Stage.hpp"
 
+#include <iostream>
+
 @interface StageWrapper()
 {
     Stage stage;
@@ -31,10 +33,9 @@
     }
     catch (const char* e)
     {
-
-        printf("\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: ");
-        printf("%s", e);
-        printf("\n\n");
+        std::cout << "\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: " << std::endl;
+        std::cout << e << std::endl;
+        std::cout << "\n" << std::endl;
 
         NSString* reason = [NSString stringWithUTF8String:e];
         NSString* name = reason;
@@ -54,28 +55,31 @@
 
 - (NSString*)getStage
 {
-    NSString* nsStage = [NSString stringWithUTF8String:stage.getStage().c_str()];
-    return nsStage;
+    return [NSString stringWithUTF8String:stage.getStage().c_str()];
+}
+
+- (NSString*)getRemainingLetters
+{
+    return [NSString stringWithUTF8String:stage.getRemainingLetters().c_str()];
 }
 
 - (NSString*)getCompleteStage
 {
-    NSString* nsStage = [NSString stringWithUTF8String:stage.getCompleteStage().c_str()];
-    return nsStage;
+    return [NSString stringWithUTF8String:stage.getCompleteStage().c_str()];
 }
 
 - (bool)makeGuess:(char)letter
 {
-    try
-    {
-        return stage.makeGuess(letter);
+    auto result = false;
+    
+    try {
+        result = stage.makeGuess(letter);
 
-    } catch (const char* e)
-    {
-
-        printf("\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: ");
-        printf("%s", e);
-        printf("\n\n");
+    } 
+    catch (const char* e) {
+        std::cout << "\nC++ Error Occured.. Caught in OBJC.. Thrown to Swift: " << std::endl;
+        std::cout << e << std::endl;
+        std::cout << "\n" << std::endl;
 
         NSString* reason = [NSString stringWithUTF8String:e];
         NSString* name = reason;
@@ -86,7 +90,8 @@
                           userInfo:nil];
         @throw exception;
     }
-    return false;
+    
+    return result;
 }
 
 - (BOOL)catchException:(void(^)())tryBlock error:(__autoreleasing NSError **)error {
