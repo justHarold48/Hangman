@@ -5,13 +5,13 @@
 //  Created by Harold Hatch on 10/9/18.
 //  Copyright © 2018 Onekliclabs. All rights reserved.
 //
-#include <Foundation/Foundation.h>
-
 #include "Stage.hpp"
 
 #include <iostream>
 #include <sstream>
 #include <algorithm>
+
+#include <Foundation/Foundation.h>
 #include <CoreFoundation/CoreFoundation.h>
 
 const std::vector<unsigned> kPos {57, 90, 91, 89, 125, 121};
@@ -21,12 +21,9 @@ const std::string DUPLICATE_LETTER_EXECEPTION = "Duplicate Letter";
 const std::string STAKE_FULL_EXECEPTION = "Stake Complete";
 const std::string BASE_FULL_EXCEPTION = "Base Complete";
 
-constexpr uint8_t END_STATE = 5;
+constexpr uint8_t END_STATE {5};
 
-void Stage::initStage(const char* word) {
-    word_ = std::string(word);
-    remaining_ = std::string(word);
-    
+void Stage::initStage(const char* word) : word_(word), remaining_(word) {    
     stake_ = "     --------------\n"
              "    |                         |\n"
              "                               |\n"
@@ -52,21 +49,22 @@ std::string Stage::getCompleteStage() {
 bool Stage::makeGuess(char letter) noexcept(false) {
     auto result = false;
     
-    if(prevGuessedLetters_.find(letter) != prevGuessedLetters_.end()) {
+    if(prevGuessedLetters_.find(letter) == prevGuessedLetters_.end()) {
+  		prevGuessedLetters_.insert(letter);
+    
+    	if(remaining_.find(letter) != std::string::npos) {
+    		addLetter(letter);
+    		remaining_.erase(remove(begin(remaining_), end(remaining_), letter), end(remaining_));
+       		result = true;
+    	}
+    	else {
+        	addBodyPart();
+    	}
+  	}
+	else {
         throw DUPLICATE_LETTER_EXECEPTION.c_str();
     }
 
-    prevGuessedLetters_.insert(letter);
-    
-    if(remaining_.find(letter) != std::string::npos) {
-        addLetter(letter);
-        remaining_.erase(remove(begin(remaining_), end(remaining_), letter), end(remaining_));
-        result = true;
-    }
-    else {
-        addBodyPart();
-    }
-    
     return result;
 }
 
@@ -74,7 +72,7 @@ bool Stage::makeGuess(char letter) noexcept(false) {
 void Stage::addBodyPart() noexcept(false) {
     stake_.replace(kPos[state], kParts[state].length(), kParts[state]);
 
-    if (END_STATE == state++) {
+    if (state++ == END_STATE) {
       throw STAKE_FULL_EXECEPTION.c_str();
     }
 }
